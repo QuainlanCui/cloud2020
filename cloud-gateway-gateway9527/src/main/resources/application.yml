@@ -10,10 +10,8 @@ spring:
         locator:
           enabled: true # 开启从注册中心动态创建路由的功能，利用微服务名称进行路由
       routes:
-        - id: payment_route # 路由的id,没有规定规则但要求唯一,建议配合服务名
-          #匹配后提供服务的路由地址
-          #          uri: http://localhost:8001
-          uri: lb://cloud-payment-service
+        - id: payment_route # 路由的id,没有规定规则但要求唯一,建议配合服务名,#匹配后提供服务的路由地址
+          uri: http://localhost:8001
           predicates:
             - Path=/payment/get/** # 断言，路径相匹配的进行路由
               #- After=2017-01-20T17:42:47.789-07:00[America/Denver]
@@ -27,8 +25,7 @@ spring:
             #filters:
             #  - AddRequestHeader=X-Request-red, blue
         - id: payment_route2
-          #          uri: http://localhost:8001
-          uri: lb://cloud-payment-service
+          uri: http://localhost:8001
           predicates:
             Path=/payment/lb/** #断言,路径相匹配的进行路由
 
